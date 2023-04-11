@@ -41,7 +41,7 @@ services:
     ports:
       - 8080:8080
     extra_hosts:
-      - "postgres:172.117.0.20"
+      - "postgresql:172.117.0.20"
       - "mysql:172.117.0.22"
     networks:
       bridge:
