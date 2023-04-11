@@ -1,0 +1,33 @@
+version '3.9'
+service:
+  postgresdb:  
+    image: postgres:15.2
+    container_name: mypostgresql
+    restart: always
+    volumes:
+      - db_postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=admin
+    networks:
+      bridge:
+        ipv4_address: 172.16.0.20
+  adminer:
+    image: adminer:4.8.1-standalone
+    container_name: myadminer
+    depends_on:
+      - postgresdb
+    ports:
+      - 8080:8080
+    networks:
+      bridge:
+        ipv4_address: 172.16.0.21
+networks:
+  bridge:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.0.0/24"
+volumes:
+  db_postgres:
