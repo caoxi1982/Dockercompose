@@ -40,6 +40,9 @@ services:
     container_name: myadminer
     ports:
       - 8080:8080
+    extra_hosts:
+      - "postgres:172.117.0.20"
+      - "mysql:172.117.0.22"
     networks:
       bridge:
         ipv4_address: 172.117.0.21
